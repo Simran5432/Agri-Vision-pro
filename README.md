@@ -1,4 +1,4 @@
-# 🌾 AgriVision-Pro
+# 🌱 AgriVision Pro
 
 ### Precision Farming Decision Support System
 
@@ -6,123 +6,169 @@
 
 ## 🚀 Overview
 
-AgriVision-Pro is an intelligent agriculture support system that helps farmers make **data-driven decisions** instead of relying on traditional practices.
-
-The system analyzes a **Soil Health Card image**, combines it with **weather data**, and provides:
-
-* 🌱 Crop recommendations
-* 💰 Profit estimation
-* 🧪 Fertilizer suggestions
+**AgriVision Pro** is a full-stack web application designed to empower farmers with **data-driven agricultural insights**.
+It transforms raw soil data, weather conditions, and land inputs into **actionable recommendations** for crop selection, fertilizer usage, and profit optimization.
 
 ---
 
 ## 🎯 Problem Statement
 
-Farmers often rely on guesswork, leading to:
+Farmers often rely on traditional practices instead of scientific data, leading to:
 
 * Inefficient fertilizer usage
 * Poor crop selection
-* Reduced yield and profit
+* Reduced yield and profitability
 
 ---
 
 ## 💡 Solution
 
-Our system integrates:
+AgriVision Pro provides an intelligent platform that:
 
-* Soil data (from SHC images)
-* Weather conditions
-* Smart decision logic
-
-To generate **personalized farming recommendations**.
-
----
-
-## ⚙️ How It Works
-
-```text
-User uploads Soil Health Card image
-        ↓
-Image processing (OCR / fallback)
-        ↓
-Extract soil parameters (N, P, K, pH, organic carbon)
-        ↓
-Fetch weather data using location
-        ↓
-Predict top 3 crops
-        ↓
-Estimate profit
-        ↓
-Recommend fertilizers
-```
+* Analyzes **Soil Health Card (SHC)** data
+* Integrates **weather information**
+* Recommends **optimal crops**
+* Suggests **fertilizer usage and quantity**
+* Estimates **profit potential**
 
 ---
 
-## 🧠 Features
+## ⚙️ Key Features
 
-✔ Upload Soil Health Card image
-✔ Automatic soil data extraction
-✔ Weather integration (API-based)
-✔ Top 3 crop recommendations
-✔ Profit estimation for each crop
-✔ Fertilizer recommendation (name + quantity)
-✔ Smart fallback system (ensures output even if errors occur)
+* 📷 **Image-based Soil Analysis**
+  Upload Soil Health Card images for automatic data extraction
+
+* 🌱 **Soil Nutrient Insights**
+  Visual representation of N, P, K, pH, and organic content
+
+* 🌾 **Crop Recommendation System**
+  Top 3 crops based on soil and environmental conditions
+
+* 💰 **Profit Estimation**
+  Expected returns for recommended crops
+
+* 🧪 **Fertilizer Recommendation**
+  Optimized fertilizer suggestions with quantities
+
+* 🌦️ **Weather Integration**
+  Real-time weather data based on location
+
+* 🔄 **Robust Processing Pipeline**
+  Ensures consistent results across different inputs
 
 ---
 
-## 🛠️ Tech Stack
+## 🏗️ Tech Stack
+
+### 🔹 Frontend
+
+* React.js
+* Modern UI/UX with responsive design
+* Component-based architecture
 
 ### 🔹 Backend
 
 * Node.js
 * Express.js
-* Multer (file upload)
-* Axios (API calls)
 
-### 🔹 AI / Logic
+### 🔹 APIs & Integration
 
-* Rule-based crop prediction
-* Soil nutrient analysis
-* Fertilizer calculation
-
-### 🔹 External APIs
-
-* OpenWeatherMap API
+* OpenWeather API (weather data)
+* Image processing & data extraction pipeline
 
 ---
 
 ## 📂 Project Structure
 
-```text
-backend/
+```
+project/
 │
-├── controllers/
-├── routes/
-├── services/
-├── utils/
-├── app.js
-├── server.js
+├── backend/
+│   ├── controllers/
+│   ├── routes/
+│   ├── services/
+│   ├── utils/
+│   ├── app.js
+│   └── server.js
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── services/
+│   │   ├── pages/
+│   │   └── App.jsx
+│   └── package.json
+│
+└── README.md
+```
+
+---
+
+## 🔌 How It Works
+
+1. User uploads Soil Health Card image
+2. System extracts soil parameters
+3. Weather data is fetched based on location
+4. Backend processes inputs
+5. Frontend displays:
+
+   * Soil insights
+   * Recommended crops
+   * Fertilizer suggestions
+   * Profit estimates
+
+---
+
+## 🛠️ Setup Instructions
+
+### 🔹 1. Clone Repository
+
+```bash
+git clone <repo-link>
+cd project
+```
+
+---
+
+### 🔹 2. Backend Setup
+
+```bash
+cd backend
+npm install
+node server.js
+```
+
+Server runs on:
+
+```
+http://localhost:5000
+```
+
+---
+
+### 🔹 3. Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend runs on:
+
+```
+http://localhost:5173
 ```
 
 ---
 
 ## 🔐 Environment Variables
 
-Create a `.env` file inside backend:
+Create a `.env` file in backend:
 
-```env
-PORT=5000
-WEATHER_API_KEY=your_api_key_here
 ```
-
----
-
-## ▶️ How to Run
-
-```bash
-cd backend
-npm install
-node server.js
+PORT=5000
+OPENWEATHER_API_KEY=your_api_key_here
 ```
 
 ---
@@ -131,68 +177,39 @@ node server.js
 
 ### POST `/api/analyze`
 
-**Request:**
-
-* Form-data → `image` (file upload)
-
-**Response:**
-
-```json
-{
-  "soil_data": { "N": 90, "P": 42, "K": 43, "ph": 6.5 },
-  "location": { "latitude": 31.026, "longitude": 75.790 },
-  "weather": { "temperature": 30, "humidity": 60, "rainfall": 20 },
-  "top_crops": [
-    { "crop": "rice", "confidence": 90, "profit": 50000 }
-  ],
-  "fertilizers": [
-    { "name": "Urea", "quantity": "50 kg/acre" }
-  ]
-}
-```
+* Accepts: Image file (form-data)
+* Returns: Structured agricultural insights
 
 ---
 
-## 🛡️ Reliability Feature
+## 🎥 Demo Flow
 
-Even if:
-
-* Image processing fails
-* OCR fails
-* API fails
-
-👉 The system uses a **fallback mechanism** to always provide meaningful output.
+1. Login
+2. Upload Soil Health Card
+3. View nutrient analysis
+4. Get crop recommendations
+5. View fertilizer plan and profit insights
 
 ---
 
-## 🎤 Use Case
+## 🔮 Future Scope
 
-* Farmers
-* Agricultural advisors
-* Smart farming systems
-
----
-
-## 🚀 Future Enhancements
-
-* MongoDB integration (history tracking)
-* Real ML model integration
-* Mobile app
-* Satellite data integration
+* Integration with government soil databases
+* Satellite-based precision farming
+* Mobile application for wider accessibility
+* Advanced predictive analytics
 
 ---
 
-## 👨‍💻 Team Contribution
+## 👨‍💻 Contributors
 
-* Backend development
-* Soil data processing
-* Crop recommendation logic
-* Fertilizer optimization
+* Simran Preet Kaur, Simranjit Kaur, Simranjot, Sheetal
+* Team TechTitans
 
 ---
 
-## 🌟 Conclusion
+## 📌 Conclusion
 
-AgriVision-Pro empowers farmers with **AI-driven insights**, improving productivity, reducing waste, and increasing profitability.
+AgriVision Pro bridges the gap between **traditional farming and smart agriculture** by combining **soil data, weather intelligence, and decision support** into one unified platform.
 
 ---
